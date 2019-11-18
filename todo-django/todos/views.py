@@ -6,6 +6,6 @@ from .serializers import TodoSerializers
 # Create your views here.
 @api_view(['GET'])
 def todo_index_create(request):
-    todos = Objects.all()
+    todos = Todo.objects.all()
     serializers = TodoSerializers(todos, many=True) 
     return Response(serializers.data)
