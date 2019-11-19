@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Todo
+from django.contrib.auth import get_user_model
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .serializers import TodoSerializers
+from .serializers import TodoSerializers, UserSerializers
 # Create your views here.
 
 #GET / todos/ : 전체 todos
@@ -29,3 +30,11 @@ def todo_delete_all(request):
         todo.delete()
     
     return Response('clear!')
+
+@api_view(['GET'])
+def user_detail(request,id):
+    User = get_user_model()
+    user = get_object_or_404(User, pk=id)
+    serializers = UserSerializers(data=user)
+    
+    return Response(serializers.data)
