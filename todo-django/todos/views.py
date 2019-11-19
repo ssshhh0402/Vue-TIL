@@ -25,5 +25,7 @@ def todo_index_create(request):
 @api_view(['GET'])
 def todo_delete_all(request):
     todos = Todo.objects.all()
-    todos.delete
+    for todo in todos:
+        todo.delete()
+    
     return Response('clear!')

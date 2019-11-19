@@ -130,5 +130,24 @@ CORS_ORIGIN_ALLOW_ALL = True # CORS 편의상 모든 도메인에서 허용
 
 CORS_ORIGIN_WHITE_LIST = [
     # 추후에는 배포시 설정한    vue(WHITE LIST 안에 등록된 아이들)에서만 요청 보낼 수 있도록 정의!
-
 ]
+
+# JWT
+# DRF : 모든 views.py에 적용되는 데코레이터 선언
+REST_FRAMEWORK = {
+    # 모든 views.py: 반드시 인증되어야 한다. (IsAuthenticated)
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    # 모든 views.py : 인증을 JWT 혹은 Session 등을 통해서 인증된다.
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
+
+import datetime
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA' : datetime.timedelta(days = 1)
+}
