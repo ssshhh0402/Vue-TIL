@@ -129,6 +129,6 @@ AUTH_USER_MODEL = 'todos.User'
 CORS_ORIGIN_ALLOW_ALL = True # CORS 편의상 모든 도메인에서 허용
 
 CORS_ORIGIN_WHITE_LIST = [
-    # 추후에는 배포시 vue(WHITE LIST 안에 등록된 아이들)에서만 요청 보낼 수 있도록 정의!
+    # 추후에는 배포시 설정한    vue(WHITE LIST 안에 등록된 아이들)에서만 요청 보낼 수 있도록 정의!
 
 ]
