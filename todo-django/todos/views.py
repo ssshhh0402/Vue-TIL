@@ -49,7 +49,7 @@ def todo_update_delete(request,id):
         serializers = TodoSerializers(data=request.data, instance = todo)
         if serializers.is_valid(raise_exception=True):
             serializers.save()
-            return Response(serializers)
+            return Response(serializers.data)
     else:
         todo.delete()
         # HTTP 상태코드 204
